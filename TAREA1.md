@@ -1,4 +1,8 @@
-
+# Datos
+* Tarea 1
+* Laboratorio de Lenguajes Formales de Programación 
+* Linda Madelin Fabiola Quelex Sep
+* 201403745
 
 
 
@@ -22,8 +26,15 @@ public class Tarea2 {
 
 - public
 - class
-- MiClase
+- Tarea2
 - {
+- private
+- final
+- int
+- REPETICIONES
+- =
+- 5
+- ;
 - public
 - static
 - void
@@ -35,105 +46,128 @@ public class Tarea2 {
 - args
 - )
 - {
-- char
-- ch
-- =
-- 'a'
-- ;
 - int
-- ascii
+- i
 - =
-- ch
+- 0
 - ;
+- while
+- (
+- i
+- <
+- REPETICIONES
+- )
+- {
 - System
 - .
 - out
 - .
 - println
 - (
-- "El valor de "
+- " Repetición NO. "
+- + 
+- (
+- i
 - +
-- ch
-- +
-- " es: "
-- +
-- ascii
+- 1
 - )
+- )
+- ;
+- i
+- +
+- +
 - ;
 - }
 - }
+- }
+
 
 # Definición de tokens
 
-| Token               | Descripción                          | Patrón                              |
-| ------------------- | ------------------------------------ | ----------------------------------- |
-| reservada_public    | Palabra reservada                    | public                              |
-| reservada_class     | Palabra reservada                    | class                               |
-| identificador       | Cualquier identificador del lenguaje | (_\|[a-zA-Z])(_\|[a-zA-Z0-9])       |
-| llaveA              | Llave abierta                        | {                                   |
-| llaveB              | Llave cerrada                        | }                                   |
-| reservada_static    | Palabra reservada                    | static                              |
-| reservada_void      | Palabra reservada                    | void                                |
-| parA                | Paréntesis abierto                   | (                                   |
-| parB                | Paréntesis cerrado                   | )                                   |
-| tipo_string         | Tipo de dato string                  | String                              |
-| tipo_char           | Tipo de dato char                    | char                                |
-| tipo                | Tipo de dato                         | tipo_string\|tipo_int\|tipo_boolean |
-| corA                | Corchete abierto                     | [                                   |
-| corB                | Corchete cerrado                     | ]                                   |
-| operador_igualacion | Operador de igualación               | ==                                  |
-| operador_igual      | Operador de asignación               | =                                   |
-| operador_suma       | Operador de suma                     | +                                   |
-| dato_char           | Dato de tipo char                    | '[^']\|(\')'                        |
-| dato_string         | Dato de tipo string                  | "([^"]\|(\"))*"                     |
-| dato                | Dato de cualquier tipo               | dato_char\| dato_string \| dato_int |
-| punto_coma          | Punto y coma                         | ;                                   |
-| punto               | Operador                             | .                                   |
+| Token              | Descripción                          | Patrón                        |
+| ------------------ | ------------------------------------ | ----------------------------- |
+| reservada_public   | Palabra reservada                    | public                        |
+| reservada_class    | Palabra reservada                    | class                         |
+| identificador      | Cualquier identificador del lenguaje | (_\|[a-zA-Z])(_\|[a-zA-Z0-9]) |
+| llave_abierta      | Llave abierta                        | {                             |
+| llave_cerrada      | Llave cerrada                        | }                             |
+| reservada_private  | Palabra reservada                    | private                       |
+| reservada_final    | Palabra reservada                    | final                         |
+| tipo_int           | Tipo de dato entero                  | int                           |
+| operador_igual     | Operador de asignación               | =                             |
+| Dato_int           | Dato tipo entero                     | ^\d+$                         |
+| punto_coma         | Punto y coma                         | ;                             |
+| reservada_static   | Palabra reservada                    | static                        |
+| reservada_void     | Palabra reservada                    | void                          |
+| parentesis_abierto | Paréntesis abierto                   | (                             |
+| parentesis_cerrado | Paréntesis cerrado                   | )                             |
+| tipo_string        | Tipo de dato String                  | String                        |
+| corchete_open      | Corchete abierto                     | [                             |
+| corchete_close     | Corchete cerrado                     | ]                             |
+| iterativo          | Ciclo while                          | While                         |
+| menor_que          | Operador menor que                   | <                             |
+| punto              | Operador                             | .                             |
+| suma               | Operador suma                        | +                             |
+| dato_String        | Dato tipo String                     | "([^"]\|(\"))*"               |
 
-# Análisis léxico
 
-| Lexema         | Token            |
-| -------------- | ---------------- |
-| public         | reservada_public |
-| class          | reservada_class  |
-| MiClase        | identificador    |
-| {              | llaveA           |
-| public         | reservada_public |
-| static         | reservada_static |
-| void           | reservada_void   |
-| main           | identificador    |
-| (              | parA             |
-| String         | tipo_string      |
-| [              | corA             |
-| ]              | corB             |
-| args           | identificador    |
-| )              | parB             |
-| {              | llaveA           |
-| char           | tipo_char        |
-| ch             | identificador    |
-| =              | operador_igual   |
-| 'a'            | dato_char        |
-| ;              | punto_coma       |
-| int            | tipo_int         |
-| ascii          | identificador    |
-| =              | operador_igual   |
-| ch             | identificador    |
-| ;              | punto_coma       |
-| System         | identificador    |
-| .              | punto            |
-| out            | identificador    |
-| .              | punto            |
-| println        | identificador    |
-| (              | parA             |
-| "El valor de " | dato_string      |
-| +              | operador_suma    |
-| ch             | identificador    |
-| +              | operador_suma    |
-| " es: "        | dato_string      |
-| +              | operador_suma    |
-| ascii          | identificador    |
-| )              | parB             |
-| ;              | punto_coma       |
-| }              | llaveB           |
-| }              | llaveB           |
+# Análisis léxico tarea
 
+| Lexema             | Token              |
+| ------------------ | ------------------ |
+| public             | reservada_public   |
+| class              | reservada_class    |
+| Tarea2             | identificador      |
+| {                  | llave_abierta      |
+| private            | reservada_private  |
+| final              | reservada_final    |
+| int                | tipo_int           |
+| REPETICIONES       | identificador      |
+| =                  | operador_igual     |
+| 5                  | Dato_int           |
+| ;                  | punto_coma         |
+| public             | reservada_public   |
+| static             | reservada_static   |
+| void               | reservada_void     |
+| main               | identificador      |
+| (                  | parentesis_abierto |
+| String             | tipo_string        |
+| [                  | corchete_open      |
+| ]                  | corchete_close     |
+| args               | identificador      |
+| )                  | parentesis_cerrado |
+| {                  | llave_abierta      |
+| int                | tipo_int           |
+| i                  | identificador      |
+| =                  | operador_igual     |
+| 0                  | Dato_int           |
+| ;                  | punto_coma         |
+| while              | iterativo          |
+| (                  | parentesis_abierto |
+| i                  | identificador      |
+| <                  | menor_que          |
+| REPETICIONES       | identificador      |
+| )                  | parentesis_cerrado |
+| {                  | llave_abierta      |
+| System             | identificador      |
+| .                  | punto              |
+| out                | identificador      |
+| .                  | punto              |
+| println            | identificador      |
+| (                  | llave_abierta      |
+| " Repetición NO. " | dato_String        |
+| +                  | suma               |
+| (                  | llave_abierta      |
+| i                  | identificador      |
+| +                  | suma               |
+| 1                  | Dato_int           |
+| )                  | parentesis_cerrado |
+| )                  | parentesis_cerrado |
+| ;                  | punto_coma         |
+| i                  | identificador      |
+| +                  | suma               |
+| +                  | suma               |
+| ;                  | punto_coma         |
+| }                  | llave_cerrada      |
+| }                  | llave_cerrada      |
+| }                  | llave_cerrada      |
